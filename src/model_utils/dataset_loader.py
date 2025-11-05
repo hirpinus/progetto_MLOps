@@ -6,7 +6,7 @@ import subprocess
 import json
 from pathlib import Path
 
-def download_kaggle_dataset(dataset_name, output_path, output_filename=None):
+def download_kaggle_dataset(dataset_name, output_path, output_filename=None,kaggle_username=None, kaggle_key=None):
     """
     Scarica un dataset da Kaggle
     
@@ -27,6 +27,10 @@ def download_kaggle_dataset(dataset_name, output_path, output_filename=None):
         
         # Usa kaggle API per scaricare il dataset
         command = f"kaggle datasets download -d {dataset_name} -p {temp_dir} --unzip"
+
+        if kaggle_username and kaggle_key:
+            command = f"KAGGLE_USERNAME={kaggle_username} KAGGLE_KEY={kaggle_key} {command}"
+
         result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
         
         if result.returncode == 0:
