@@ -13,7 +13,7 @@ MODEL_SAVE_PATH=BASE_PATH+"/models"
 
 def train_model():
 
-        dataset_loader.download_kaggle_dataset(KAGGLE_DATASET_NAME, DATASET_ORIGINAL_PATH, DATASET_ORIGINAL_FILENAME)
+    dataset_loader.download_kaggle_dataset(KAGGLE_DATASET_NAME, DATASET_ORIGINAL_PATH, DATASET_ORIGINAL_FILENAME)
 
     preprocessed_dataset_path = dataset_loader.dataset_preprocess(DATASET_ORIGINAL_PATH,
                                                          DATASET_ORIGINAL_FILENAME,
