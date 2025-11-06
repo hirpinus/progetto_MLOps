@@ -79,9 +79,10 @@ def train_model():
     # Lancia il fine-tuning
     trainer.train()
 
-    # Salva il nuovo modello riaddestrato
+    #Salva il nuovo modello riaddestrato
     trainer.save_model(MODEL_SAVE_PATH)
 
-
+    #Dobbiamo salvare anche il modello pretrained per le configurazioni future
+    tokenizer.save_pretrained(MODEL_SAVE_PATH)
 
 train_model()
