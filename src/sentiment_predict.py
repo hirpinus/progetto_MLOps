@@ -11,16 +11,14 @@ class SentimentPredictor:
         # Tokenizza il testo
         inputs = self.tokenizer(text, return_tensors="pt", truncation=True, max_length=128)
         
-        # Fai la predizione
         with torch.no_grad():
             outputs = self.model(**inputs)
             predictions = torch.nn.functional.softmax(outputs.logits, dim=-1)
             
-        # Ottieni la classe predetta e la confidenza
         predicted_class = torch.argmax(predictions).item()
         confidence = predictions[0][predicted_class].item()
         
-        # Mappa le classi alle etichette
+        #Mappa le classi alle etichette
         sentiment_map = {0: "Negativo", 1: "Neutro", 2: "Positivo"}
         
         return {
