@@ -2,7 +2,7 @@ from sentiment_predict import SentimentPredictor
 
 def main():
     # Percorso del modello salvato
-    MODEL_PATH = "/workspaces/progetto_monitoraggio_reputazione_aziendale/models"
+    MODEL_PATH = "/workspaces/progetto_MLOps/models"
     
     # Inizializza il predictor
     predictor = SentimentPredictor(MODEL_PATH)

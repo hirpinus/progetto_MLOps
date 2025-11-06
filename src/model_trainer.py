@@ -11,9 +11,9 @@ DATASET_PROCESSED_FILENAME="sentiment140_ready.csv"
 MODEL_NAME="cardiffnlp/twitter-roberta-base-sentiment-latest"
 MODEL_SAVE_PATH=BASE_PATH+"/models"
 
-
 KAGGLE_USERNAME_ENV = os.getenv("KAGGLE_USERNAME")
 KAGGLE_KEY_ENV = os.getenv("KAGGLE_KEY")
+
 
 def train_model():
 
