@@ -1,4 +1,6 @@
-models
+models/*
 __pycache__
-logs
-my_datasets/Sentiment140_original/training.1600000.processed.noemoticon.csv
+my_datasets/Sentiment140_original/*
+my_datasets/Sentiment140_preprocessed/*
+src/logs/*
+
