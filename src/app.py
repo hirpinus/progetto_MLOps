@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from prometheus_client import Counter, Gauge, make_asgi_app
-from sentiment_predict import SentimentPredictor
+from .sentiment_predict import SentimentPredictor
 from pathlib import Path
 
 # --- Modello Pydantic per la validazione dell'input ---
