@@ -1,36 +1,37 @@
 version: '3.8'
 
 services:
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-
-  grafana:
-    image: grafana/grafana
-    volumes:
-      - ./grafana/provisioning:/etc/grafana/provisioning
-    ports:
-      - "3000:3000"
-    depends_on:
-      - prometheus
-
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    container_name: sentiment-app
+    ports:
+      - "5001:5001"
     volumes:
       - ./src:/app/src
+      - ./models:/app/models
     environment:
-      - PROMETHEUS_URL=http://prometheus:9090
+      - MODEL_PATH=/app/models
+
+  prometheus:
+    image: prom/prometheus:v2.47.2
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana:10.1.5
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
     depends_on:
       - prometheus
 
 networks:
   default:
-    driver: bridge
-
-volumes:
-  prometheus_data:
+    name: monitoring-net
