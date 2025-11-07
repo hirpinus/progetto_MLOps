@@ -1,6 +1,7 @@
+import os
+from pathlib import Path
 from model_utils import dataset_loader
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
-import os
 
 BASE_PATH = Path(__file__).resolve().parents[1]  # root del progetto
 KAGGLE_DATASET_NAME = "kazanova/sentiment140"
