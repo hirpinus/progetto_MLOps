@@ -1,10 +1,12 @@
 from sentiment_predict import SentimentPredictor
+from pathlib import Path
 
 def main():
 
-    MODEL_PATH = "/workspaces/progetto_MLOps/models"
+    BASE_PATH = Path(__file__).resolve().parents[1]
+    MODEL_PATH = BASE_PATH / "models"
     
-    predictor = SentimentPredictor(MODEL_PATH)
+    predictor = SentimentPredictor(str(MODEL_PATH))
     
     test_texts = [
         "Questo prodotto è fantastico!",
