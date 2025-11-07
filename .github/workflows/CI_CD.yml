@@ -54,10 +54,10 @@ jobs:
 
     - name: Push to Hugging Face Hub
       #Esegue questo step solo se il token HF è disponibile e siamo sul branch main
-      if: github.ref == 'refs/heads/main' && env.KAGGLE_KEY != ''
+      if: github.ref == 'refs/heads/main' && env.HF_TOKEN != ''
       run: |
-        huggingface-cli login --token $KAGGLE_KEY
-        huggingface-cli upload \
+        hf auth login --token $HF_TOKEN
+        hf upload \
           $KAGGLE_USERNAME/sentiment-analysis-profAI \
           models/ \
           . \
