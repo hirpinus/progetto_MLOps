@@ -31,6 +31,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Train model
+      run: python src/model_trainer.py
+      timeout-minutes: 60
     - name: Test with pytest
       working-directory: "tests"
       run: pytest
