@@ -19,6 +19,8 @@ jobs:
     env:
       KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
       KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      HF_USERNAME: ${{ secrets.HF_USERNAME }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }} 
       PYTHONPATH: src 
     steps:
     - uses: actions/checkout@v4
@@ -58,7 +60,7 @@ jobs:
       run: |
         hf auth login --token $HF_TOKEN
         hf upload \
-          $KAGGLE_USERNAME/sentiment-analysis-profAI \
+          $HF_USERNAME/sentiment-analysis-profAI \
           models/ \
           . \
           --repo-type model \
