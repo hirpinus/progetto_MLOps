@@ -1,7 +1,7 @@
 from __future__ import annotations
 import os, sys, subprocess, pytest
 from pathlib import Path
-from sentiment_predict import SentimentPredictor
+
 
 ROOT = Path(__file__).resolve().parents[1]          # root della repo
 SRC_DIR = ROOT / "src"
@@ -9,6 +9,8 @@ MODEL_DIR = ROOT / "models"
 
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
+
+from sentiment_predict import SentimentPredictor
 
 def _has_tokenizer_assets(path: Path) -> bool:
     if not path.is_dir():
