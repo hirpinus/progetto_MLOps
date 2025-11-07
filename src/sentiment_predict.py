@@ -4,8 +4,6 @@ import torch
 
 class SentimentPredictor:
     def __init__(self, model_path: str):
-        self.model_path = model_path
-        self.model = self.load_model()
         self._check_tokenizer_assets(model_path)
         self.model = AutoModelForSequenceClassification.from_pretrained(model_path)
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
