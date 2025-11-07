@@ -18,6 +18,18 @@ KAGGLE_KEY_ENV = os.getenv("KAGGLE_KEY")
 
 def train_model():
 
+    print("--- Avvio del processo di training ---")
+
+    # 1. Crea tutte le directory necessarie in anticipo
+    print(f"Creazione directory necessarie...")
+
+    DATASET_ORIGINAL_PATH.mkdir(parents=True, exist_ok=True)
+    DATASET_PROCESSED_PATH.mkdir(parents=True, exist_ok=True)
+    MODEL_SAVE_PATH.mkdir(parents=True, exist_ok=True)
+    (BASE_PATH / "logs" / "results").mkdir(parents=True, exist_ok=True)
+
+    print("Directory create con successo.")
+
     dataset_loader.download_kaggle_dataset(KAGGLE_DATASET_NAME, 
                                            DATASET_ORIGINAL_PATH, 
                                            DATASET_ORIGINAL_FILENAME,
@@ -77,13 +89,16 @@ def train_model():
         eval_dataset=tokenized_dataset["test"],
     )
 
-    # Lancia il fine-tuning
+    print("--- Inizio training del modello ---")
     trainer.train()
+    print("--- Training completato ---")
 
     #Salva il nuovo modello riaddestrato
+    print(f"Salvataggio del modello e del tokenizer in: {MODEL_SAVE_PATH}")
     trainer.save_model(MODEL_SAVE_PATH)
 
     #Dobbiamo salvare anche il modello pretrained per le configurazioni future
     tokenizer.save_pretrained(MODEL_SAVE_PATH)
-
+    print("--- Modello salvato con successo ---")
+    
 train_model()
