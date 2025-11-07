@@ -19,6 +19,7 @@ jobs:
     env:
       KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
       KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      PYTHONPATH: src 
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.12
