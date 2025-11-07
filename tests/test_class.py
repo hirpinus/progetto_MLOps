@@ -26,7 +26,6 @@ def _has_model_weights(path: Path) -> bool:
     files = {p.name for p in path.iterdir()} if path.is_dir() else set()
     return "model.safetensors" in files or "pytorch_model.bin" in files
 
-@pytest.mark.integration
 def test_model_assets_exist():
     if not MODEL_DIR.is_dir():
         pytest.skip(f"Cartella modello assente: {MODEL_DIR}")
@@ -34,7 +33,6 @@ def test_model_assets_exist():
     assert _has_model_weights(MODEL_DIR), "pesi del modello mancanti (model.safetensors o pytorch_model.bin)"
     assert _has_tokenizer_assets(MODEL_DIR), "asset tokenizer mancanti (tokenizer.json o vocab.*)"
 
-@pytest.mark.integration
 def test_can_load_and_predict():
     if not (_has_tokenizer_assets(MODEL_DIR) and _has_model_weights(MODEL_DIR)):
         pytest.skip("Asset modello/tokenizer mancanti; salto inferenza.")
@@ -45,7 +43,6 @@ def test_can_load_and_predict():
     assert isinstance(out["raw_scores"], list)
     assert len(out["raw_scores"]) == predictor.model.config.num_labels
 
-@pytest.mark.integration
 def test_main_script_smoke_runs():
     if not (_has_tokenizer_assets(MODEL_DIR) and _has_model_weights(MODEL_DIR)):
         pytest.skip("Asset modello/tokenizer mancanti; salto smoke test main.")
