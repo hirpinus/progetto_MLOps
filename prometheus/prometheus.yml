@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'sentiment_analysis'
+    static_configs:
+      - targets: ['app:5000']  # Replace 'app:5000' with the actual address of your application if different
+    metrics_path: '/metrics'  # Ensure your application exposes metrics at this path

@@ -3,4 +3,4 @@ __pycache__
 my_datasets/Sentiment140_original/*
 my_datasets/Sentiment140_preprocessed/*
 src/logs/*
-
+!models/sentiment_model

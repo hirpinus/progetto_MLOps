@@ -1,0 +1,9 @@
+apiVersion: 1
+
+providers:
+  - name: 'Sentiment Analysis Dashboard'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    options:
+      path: /var/lib/grafana/dashboards/sentiment_analysis_dashboard.json

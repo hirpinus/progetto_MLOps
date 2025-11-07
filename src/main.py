@@ -1,5 +1,7 @@
 from sentiment_predict import SentimentPredictor
 from pathlib import Path
+import time
+import requests
 
 def main():
 
@@ -19,6 +21,18 @@ def main():
         print(f"\nTesto: {text}")
         print(f"Sentimento: {result['sentiment']}")
         print(f"Confidenza: {result['confidence']:.2%}")
+        log_metrics(result)
+        
+def log_metrics(result):
+    prometheus_url = "http://prometheus:9090/api/v1/write"  # Adjust the URL as needed
+    metrics = {
+        "sentiment": result['sentiment'],
+        "confidence": result['confidence']
+    }
+    try:
+        requests.post(prometheus_url, json=metrics)
+    except Exception as e:
+        print(f"Error logging metrics: {e}")
 
 if __name__ == "__main__":
     main()
