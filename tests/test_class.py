@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]          # root della repo
 SRC_DIR = ROOT / "src"
 MODEL_DIR = ROOT / "models"
 
-#if str(SRC_DIR) not in sys.path:
-#    sys.path.insert(0, str(SRC_DIR))
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 def _has_tokenizer_assets(path: Path) -> bool:
     if not path.is_dir():
