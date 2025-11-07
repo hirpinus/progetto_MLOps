@@ -52,6 +52,17 @@ jobs:
         path: models/
         retention-days: 20
 
+    - name: Push to Hugging Face Hub
+      #Esegue questo step solo se il token HF è disponibile e siamo sul branch main
+      if: github.ref == 'refs/heads/main' && env.KAGGLE_KEY != ''
+      run: |
+        huggingface-cli login --token $KAGGLE_KEY
+        huggingface-cli upload \
+          $KAGGLE_USERNAME/sentiment-analysis-profAI \
+          models/ \
+          . \
+          --repo-type model \
+          --commit-message "Push del modello addestrato dalla CI "
     - name: Test with pytest
       working-directory: "tests"
       run: pytest
