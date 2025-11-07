@@ -2,14 +2,14 @@ from model_utils import dataset_loader
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 import os
 
-BASE_PATH="/workspaces/progetto_MLOps"
-KAGGLE_DATASET_NAME="kazanova/sentiment140"
-DATASET_ORIGINAL_PATH=BASE_PATH+"/my_datasets/Sentiment140_original"
-DATASET_ORIGINAL_FILENAME="training.1600000.processed.noemoticon.csv"
-DATASET_PROCESSED_PATH=BASE_PATH+"/my_datasets/Sentiment140_preprocessed"
-DATASET_PROCESSED_FILENAME="sentiment140_ready.csv"
-MODEL_NAME="cardiffnlp/twitter-roberta-base-sentiment-latest"
-MODEL_SAVE_PATH=BASE_PATH+"/models"
+BASE_PATH = Path(__file__).resolve().parents[1]  # root del progetto
+KAGGLE_DATASET_NAME = "kazanova/sentiment140"
+DATASET_ORIGINAL_PATH = BASE_PATH / "my_datasets" / "Sentiment140_original"
+DATASET_ORIGINAL_FILENAME = "training.1600000.processed.noemoticon.csv"
+DATASET_PROCESSED_PATH = BASE_PATH / "my_datasets" / "Sentiment140_preprocessed"
+DATASET_PROCESSED_FILENAME = "sentiment140_ready.csv"
+MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+MODEL_SAVE_PATH = BASE_PATH / "models"
 
 KAGGLE_USERNAME_ENV = os.getenv("KAGGLE_USERNAME")
 KAGGLE_KEY_ENV = os.getenv("KAGGLE_KEY")
